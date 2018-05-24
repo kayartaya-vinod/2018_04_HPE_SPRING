@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans.xsd">
+		
+		
+	<bean name="dao1" scope="prototype" class="spring.training.dao.impl.ProductDaoJdbcImpl">
+		<!-- ask spring to invoke overloaded constructor -->
+		<!-- constructor based injection -->
+		<constructor-arg value="org.h2.Driver" />
+		<constructor-arg value="jdbc:h2:tcp://localhost/~/hpe_spring_training" />
+		<constructor-arg value="root" />
+		<constructor-arg value="" />
+	</bean>
+
+	<bean name="dao2" lazy-init="true" class="spring.training.dao.impl.ProductDaoJdbcImpl">
+		<!-- property/setter based injection -->
+		<!-- spring invokes the appropriate setter -->
+		<property name="driver" value="org.h2.Driver" />
+		<property name="url" value="jdbc:h2:tcp://localhost/~/hpe_spring_training" />
+		<property name="username" value="root" />
+		<property name="password" value="" />
+	</bean>
+
+</beans>
